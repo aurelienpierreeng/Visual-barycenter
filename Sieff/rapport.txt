@@ -1,0 +1,50 @@
+Rapport pour Sieff 
+
+Les valeurs suivantes sont données normalisées, sous la forme (moyenne ± écart-type) % :
+  - en % de la longueur de la diagonale de l'image, pour les distances,
+  - en % de l'aire de l'image, pour les premiers moments et les aires.
+
+Des écarts-types proches de zéro indiquent une forte concentration des valeurs indidividuelles autour de la moyenne, donc moyenne significative.
+
+RÉSULTATS :
+distance (barycentre noir -> centre de l'image).............. (2.02 ± 1.74) %
+distance (barycentre blanc -> centre de l'image)............. (9.28 ± 6.08) %
+distance (barycentre détails -> centre de l'image)........... (8.45 ± 5.80) %
+premier moment des noirs..................................... (17.80 ± 0.93) %
+premier moment des blancs.................................... (13.28 ± 2.73) %
+premier moment des détails................................... (11.06 ± 3.64) %
+aire du triangle barycentrique............................... (13.13 ± 12.51) %
+distance (barycentre détails -> axe barycentrique noir-blanc) (2.22 ± 1.36) %
+score barycentrique.......................................... (96.60 ± 3.42) %
+score de punctum............................................. (88.94 ± 3.64) %
+score de clair-obscur........................................ (40.39 ± 32.17) %
+score de la règle des tiers.................................. (19.47 ± 2.90) %
+
+MATRICE DE COVARIANCE : 
+[[ 3.28e+00  4.82e+00  3.24e-01 -6.09e-01  6.98e-01  1.76e+00  3.12e+00 -4.12e-01  1.01e+00 -1.76e+00 -1.28e+01
+  -1.29e+00]
+ [ 4.82e+00  4.01e+01  3.23e+01 -1.51e+00 -8.27e+00 -1.07e+01  6.68e+01  1.64e+00 -3.13e+00  1.07e+01  9.53e+01
+   3.49e+00]
+ [ 3.24e-01  3.23e+01  3.65e+01 -1.18e+00 -8.66e+00 -1.20e+01  5.64e+01  1.89e+00 -3.34e+00  1.20e+01  9.75e+01
+   2.96e+00]
+ [-6.09e-01 -1.51e+00 -1.18e+00  9.33e-01  2.91e-03  4.90e-01  2.81e-01  4.38e-01 -8.71e-01 -4.90e-01  6.82e+00
+   1.09e+00]
+ [ 6.98e-01 -8.27e+00 -8.66e+00  2.91e-03  8.07e+00  8.45e+00 -4.50e+00  1.38e+00 -4.52e+00 -8.45e+00 -9.16e+01
+  -5.44e+00]
+ [ 1.76e+00 -1.07e+01 -1.20e+01  4.90e-01  8.45e+00  1.44e+01 -1.72e+01  5.69e-01 -2.15e+00 -1.44e+01 -9.30e+01
+  -8.04e+00]
+ [ 3.12e+00  6.68e+01  5.64e+01  2.81e-01 -4.50e+00 -1.72e+01  1.70e+02  1.22e+01 -2.92e+01  1.72e+01  9.40e+01
+   8.38e+00]
+ [-4.12e-01  1.64e+00  1.89e+00  4.38e-01  1.38e+00  5.69e-01  1.22e+01  2.02e+00 -4.92e+00 -5.69e-01 -8.34e+00
+   5.14e-01]
+ [ 1.01e+00 -3.13e+00 -3.34e+00 -8.71e-01 -4.52e+00 -2.15e+00 -2.92e+01 -4.92e+00  1.27e+01  2.15e+00  3.47e+01
+  -4.06e-01]
+ [-1.76e+00  1.07e+01  1.20e+01 -4.90e-01 -8.45e+00 -1.44e+01  1.72e+01 -5.69e-01  2.15e+00  1.44e+01  9.30e+01
+   8.04e+00]
+ [-1.28e+01  9.53e+01  9.75e+01  6.82e+00 -9.16e+01 -9.30e+01  9.40e+01 -8.34e+00  3.47e+01  9.30e+01  1.12e+03
+   7.18e+01]
+ [-1.29e+00  3.49e+00  2.96e+00  1.09e+00 -5.44e+00 -8.04e+00  8.38e+00  5.14e-01 -4.06e-01  8.04e+00  7.18e+01
+   9.12e+00]]
+La matrice est rangée dans le même ordre que les variables ci-dessus.
+
+Des valeurs élevées (en valeur absolue) indiquent une forte corrélation entre 2 variables.

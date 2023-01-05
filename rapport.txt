@@ -1,0 +1,21 @@
+Rapport pour tests 
+
+Les valeurs suivantes sont données normalisées, sous la forme (moyenne ± écart-type) % :
+  - en % de la longueur de la diagonale de l'image, pour les distances,
+  - en % de l'aire de l'image, pour les premiers moments et les aires.
+
+Des écarts-types proches de zéro indiquent une forte concentration des valeurs indidividuelles autour de la moyenne, donc moyenne significative.
+
+RÉSULTATS :
+distance (barycentre noir -> centre de l'image).............. (nan ± nan) %
+distance (barycentre blanc -> centre de l'image)............. (nan ± nan) %
+distance (barycentre détails -> centre de l'image)........... (nan ± nan) %
+premier moment des noirs..................................... (nan ± nan) %
+premier moment des blancs.................................... (nan ± nan) %
+premier moment des détails................................... (nan ± nan) %
+aire du triangle barycentrique............................... (nan ± nan) %
+distance (barycentre détails -> axe barycentrique noir-blanc) (nan ± nan) %
+score barycentrique.......................................... (nan ± nan) %
+score de punctum............................................. (nan ± nan) %
+score de clair-obscur........................................ (nan ± nan) %
+score de la règle des tiers.................................. (nan ± nan) %

@@ -51,13 +51,13 @@ def find_details_density(im, denoise=0.5):
 
     for i in range(10):
         blur = gaussian_filter(denoised, sigma, mode="nearest", truncate=4)
-        result += ((blur - denoised) * 2. * np.pi / (np.pi**0.5 * sigma**2) )**2 / (blur + grey)
+        result += ((blur - denoised) * 2. * np.pi / (np.pi**0.5 * sigma**2) )**2# / (blur + grey)
         #result += ((blur - denoised))**2
         #result += laplace(blur)**2
         denoised = blur
         sigma *= 2**0.5
 
-    return result
+    return result**0.5
 
 
 def find_luminance_density(im):
@@ -107,7 +107,7 @@ elif os.path.isdir(path):
             for file in files:
                 if (file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".webp")
                     or file.endswith(".JPG") or file.endswith(".JPEG") or file.endswith(".PNG")):
-                        if ("analyse" not in file) and ("densite" not in file) and ("masque" not in file):
+                        if ("analyse" not in file) and ("densite" not in file) and ("masque" not in file) and ("crop" not in file):
                             files.append(os.path.join(root, file))
         print("Traitement de %i fichers dans le répertoire %s\n" % (len(files), path))
 
@@ -118,7 +118,7 @@ elif os.path.isdir(path):
         for file in os.listdir(path):
             if (file.endswith(".jpg") or file.endswith(".png") or file.endswith(".jpeg") or file.endswith(".webp")
                 or file.endswith(".JPG") or file.endswith(".JPEG") or file.endswith(".PNG")):
-                if ("analyse" not in file) and ("densite" not in file) and ("masque" not in file):
+                if ("analyse" not in file) and ("densite" not in file) and ("masque" not in file) and ("crop" not in file):
                     files.append(os.path.join(path, file))
         print("Traitement de %i fichers dans le répertoire %s\n" % (len(files), path))
 
@@ -232,10 +232,15 @@ for f in files:
     rule_of_thirds_score.append(thirds_score)
     print("%f ; %f ; %f ; %f\n" % (thirds_mask_ratio, thirds_details, thirds_features, thirds_score))
 
-
     if(verbose):
         Image.fromarray((255 * np.clip(mask1 * collapsed_details * 8., 0., 1.)**(1./2.4)).astype(np.uint8)).save(f + "-masque.jpg", optimize=True)
         Image.fromarray((255 * np.clip(mask2 * collapsed_grey, 0., 1.)**(1./2.4)).astype(np.uint8)).save(f + "-masque-2.jpg", optimize=True)
+        crop_radius = I_2 * np.hypot(im.shape[0], im.shape[1]) * 1.5
+        y_min = int(max(y_2 - crop_radius, 0))
+        y_max = int(min(y_2 + crop_radius, im.shape[1]))
+        x_min = int(max(x_2 - crop_radius, 0))
+        x_max = int(min(x_2 + crop_radius, im.shape[0]))
+        Image.fromarray((im[x_min:x_max,y_min:y_max,...]*255).astype(np.uint8)).save(f + "-crop.jpg", optimize=True)
 
     # puctum score
     punctum = (I_1 / I_2) * 100.
@@ -273,9 +278,9 @@ for f in files:
 
     plt.plot(y_center, x_center, "+", markersize=30, markerfacecolor="c", markeredgecolor="c", markeredgewidth=3, label="centre de l'image")
 
-    plt.scatter(y_1, x_1, c="none", s=I_1 * im.size / 3., edgecolors="red", plotnonfinite=True, linewidths=3)
-    plt.scatter(y_3, x_3, c="none", s=I_3 * im.size / 3., edgecolors="green", plotnonfinite=True, linewidths=3)
-    plt.scatter(y_2, x_2, c="none", s=I_2 * im.size / 3., edgecolors="blue", plotnonfinite=True, linewidths=3)
+    plt.scatter(y_1, x_1, c="none", s=I_1 * im.size, edgecolors="red", plotnonfinite=True, linewidths=3)
+    plt.scatter(y_3, x_3, c="none", s=I_3 * im.size, edgecolors="green", plotnonfinite=True, linewidths=3)
+    plt.scatter(y_2, x_2, c="none", s=I_2 * im.size, edgecolors="blue", plotnonfinite=True, linewidths=3)
 
     plt.legend(bbox_to_anchor=(1., 1.), loc='upper left')
 

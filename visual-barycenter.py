@@ -35,7 +35,7 @@ def find_first_moment(density, center):
 
 def find_details_density(im, denoise=0.5):
     # differences of gaussians to evaluate a laplacian pyramid
-    # then collapse the laplacian L1 norm of magnitude and sum over 7 scales
+    # then collapse the laplacian L2 norm of magnitude and sum over 7 scales
     # then sum over RGB to collapse into a single mask
     # laplacian is normalized by patch-wise average to make it exposure-independent
     grey = 0.055
@@ -63,7 +63,9 @@ def find_details_density(im, denoise=0.5):
 def find_luminance_density(im):
     # remove gamma assuming sRGB encoding and compute luminance Y in CIE XYZ 1931 2° standard observer
     linear = (im <= 0.04045) * im / 12.92 + (im > 0.04045) * ((im + 0.055) / (1 + 0.055))**2.4
-    return 0.2126 * linear[:, :, 0] + 0.7152 * linear[:, :, 1] + 0.0722 * linear[:, :, 2]
+    luminance = 0.2126 * linear[:, :, 0] + 0.7152 * linear[:, :, 1] + 0.0722 * linear[:, :, 2]
+    # use cubic root of luminance kind of in a CIE Lab 1976 fashion
+    return luminance**(1/3.)
 
 
 # extract program invocation arguments
